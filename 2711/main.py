@@ -120,19 +120,19 @@ def change_password(acount_number):
         pass_current_input = input("Nhập mật khẩu hiện tại của bạn :")
         if pass_current_input == password_current:
             check_pass = 0
-            while check_pass < 3:
-                new_password = input("Nhập mật khẩu mới :")
-                new_password_check = input("Xác nhận mật khẩu mới :")
-                if new_password == new_password_check:
-                    # update_password_to_database(acount_number, new_password)
-                    update_pass_to_database(acount_number, new_password)
-                    print("Đổi mật khẩu thành công")
-                    print("Đăng nhập lại để sử dụng dịch vụ")
-                    return True
-                else:
-                    print("Mật khẩu mới không trùng nhau")
-                    check_pass += 1
-            return False
+            if check_pass > 3:
+                return False
+            new_password = input("Nhập mật khẩu mới :")
+            new_password_check = input("Xác nhận mật khẩu mới :")
+            if new_password == new_password_check:
+                # update_password_to_database(acount_number, new_password)
+                update_pass_to_database(acount_number, new_password)
+                print("Đổi mật khẩu thành công")
+                print("Đăng nhập lại để sử dụng dịch vụ")
+                return True
+            else:
+                print("Mật khẩu mới không trùng nhau")
+                check_pass += 1
         else:
             print("Mật khẩu không đúng, vui lòng nhập lại!")
             count += 1
